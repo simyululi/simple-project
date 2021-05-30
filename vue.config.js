@@ -1,15 +1,34 @@
-// module.exports = {
-//     devServer:{
-//         hosts:'localhost',
-//         port:8080,
-//         proxy:{
-//             'api':{
-//                 target:'',
-//                 changeOrigin:true,
-//                 pathRewrite:{
-//                  'api':''
-//                 }
-//             }
-//         }
-//     }
-// }
+let baseURL;
+switch (process.env.NODE_ENV) {
+    case 'development':
+        baseURL = 'http://dev-mall-pre.springboot.cn';
+        break;
+    case 'test':
+        baseURL = 'http://test-mall-pre.springboot.cn';
+        break;
+    case 'prev':
+        baseURL = 'http://prev-mall-pre.springboot.cn';
+        break;
+    case 'prod':
+        baseURL = 'http://mall-pre.springboot.cn';
+        break;
+    default:
+        baseURL = 'http://mall-pre.springboot.cn';
+        break;
+}
+
+module.exports = {
+    devServer:{
+        host:'localhost',
+        port:8080,
+        proxy:{
+            '/api':{
+                target:baseURL,
+                changeOrigin:true,
+                pathRewrite:{
+                 '^/api':''
+                }
+            }
+        }
+    }
+}
