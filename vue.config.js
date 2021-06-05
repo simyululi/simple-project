@@ -1,3 +1,8 @@
+const path = require('path')
+function resolve(dir) {
+    return path.join(__dirname, dir)
+}
+
 let baseURL;
 switch (process.env.NODE_ENV) {
     case 'development':
@@ -23,12 +28,19 @@ module.exports = {
         port:8080,
         proxy:{
             '/api':{
-                target:baseURL,
+                target:"http://mall-pre.springboot.cn",
                 changeOrigin:true,
                 pathRewrite:{
                  '^/api':''
                 }
             }
         }
-    }
+    },
+    configureWebpack: {
+        resolve: {
+            alias: {
+                '@': resolve('src')
+            }
+        }
+    },
 }

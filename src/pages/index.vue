@@ -1,10 +1,15 @@
 <template>
+  <div>
 
+  </div>
 </template>
 
 <script>
+import NavHeader from "@/components/NavHeader";
+import NavFooter from "@/components/NavFooter";
 export default {
-  name: "index"
+  name: "index",
+  components: {}
 }
 </script>
 
