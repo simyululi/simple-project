@@ -1,15 +1,14 @@
 <template>
   <div>
-
+    <service-bar></service-bar>
   </div>
 </template>
 
 <script>
-import NavHeader from "@/components/NavHeader";
-import NavFooter from "@/components/NavFooter";
+import ServiceBar from "@/components/ServiceBar";
 export default {
   name: "index",
-  components: {}
+  components: {ServiceBar}
 }
 </script>
 
