@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from "@/router";
+import showToast from '@/util/util'
 
+
+Vue.use(showToast)
 Vue.config.productionTip = false
 
 new Vue({

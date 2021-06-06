@@ -78,7 +78,7 @@
                 <div class="item-info">
                   <h3>{{item.name}}</h3>
                   <p>{{item.subtitle}}</p>
-                  <p class="price" @click="addCart(item.id)">{{item.price}}元</p>
+                  <p class="price" @click="addCart(item.name)">{{item.price}}元</p>
                 </div>
               </div>
             </div>
@@ -189,6 +189,9 @@ export default {
         res.list = res.list.slice(6,14);
         this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)];
       })
+    },
+    addCart(name) {
+      this.$toast(`${name}已经加入购物车`,)
     }
   },
 }
@@ -271,8 +274,16 @@ export default {
           width: 0px;
           height: 0px;
         }
+        .swiper-button-next:hover{
+          transform: scale(2);
+          transition: 0.5s;
+        }
         .swiper-button-prev{
           left:274px;
+          &:hover{
+            transform: scale(2);
+            transition: 0.5s;
+          }
         }
         img{
           width:100%;
