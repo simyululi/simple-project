@@ -10,3 +10,14 @@ export function getPhoneList() {
         }
     })
 }
+
+export function getProducts() {
+    return request({
+        url:"/products",
+        method:"get",
+        params:{
+            categoryId:'100012',
+            pageSize:14
+        }
+    })
+}
