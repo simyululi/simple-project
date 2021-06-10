@@ -21,3 +21,28 @@ export function getProducts() {
         }
     })
 }
+
+export function Login(username, password) {
+    return request({
+        url:"/user/login",
+        method:"post",
+        data:{
+            username,
+            password
+        }
+    })
+}
+
+export function getUserInfo() {
+    return request({
+        url:"/user",
+        method:"get",
+    })
+}
+
+export function getCartInfo() {
+    return request({
+        url:"/carts/products/sum",
+        method:"get",
+    })
+}

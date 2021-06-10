@@ -5,11 +5,33 @@
 </template>
 
 <script>
+import {getUserInfo, getCartInfo} from "@/api";
 
 export default {
   name: 'App',
   components: {
 
+  },
+  data(){
+    return{
+
+    }
+  },
+  mounted() {
+    this.getUser()
+    this.getCartCount()
+  },
+  methods:{
+    getUser(){
+      getUserInfo().then((res) => {
+        this.$store.dispatch('saveUserName', res.username)
+      })
+    },
+    getCartCount(){
+      getCartInfo().then((res) => {
+        this.$store.dispatch('saveCartCount',res);
+      })
+    }
   }
 }
 </script>

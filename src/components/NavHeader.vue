@@ -119,15 +119,18 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import {getPhoneList} from "@/api";
 
   export default {
     name: "NavHeader",
     data(){
       return {
-        username:"",
         phoneList:[],
       }
+    },
+    computed:{
+      ...mapState(['username','cartCount'])
     },
     filters:{
       currency(val){
