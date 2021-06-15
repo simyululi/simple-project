@@ -16,10 +16,10 @@
             <input type="password" placeholder="请输入密码" v-model="password">
           </div>
           <div class="btn-box">
-            <a href="javascript:;" class="btn" @click="login">登录</a>
+            <a href="javascript:;" class="btn" @click="_login">登录</a>
           </div>
           <div class="tips">
-            <div class="sms" @click="register">手机短信登录/注册</div>
+<!--            <div class="sms" @click="register">手机短信登录/注册</div>-->
             <!-- <div class="reg">立即注册<span>|</span>忘记密码？</div> -->
           </div>
         </div>
@@ -51,17 +51,15 @@
       }
     },
     methods:{
-      login(){
+      _login(){
         let { username, password } = this
+
+        //更改this指向，不改的话页面不跳转
+        let _this = this
         Login(username, password).then((res) => {
           this.$cookie.set('userId', res.id, {expires:'1M'})
           this.saveUserName(res.username)
-          this.$router.push({
-            name:'index',
-            params:{
-              from:'login'
-            }
-          });
+          _this.$router.push('/index');
         })
       },
       ...mapActions(['saveUserName'])

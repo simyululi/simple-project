@@ -46,3 +46,10 @@ export function getCartInfo() {
         method:"get",
     })
 }
+
+export function getProductInfo(id) {
+    return request({
+        url:`/products/${id}`,
+        methods:"get",
+    })
+}

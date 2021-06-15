@@ -23,12 +23,12 @@ export default {
   },
   methods:{
     getUser(){
-      getUserInfo().then((res) => {
+      getUserInfo().then((res = {}) => {
         this.$store.dispatch('saveUserName', res.username)
       })
     },
     getCartCount(){
-      getCartInfo().then((res) => {
+      getCartInfo().then((res = 0) => {
         this.$store.dispatch('saveCartCount',res);
       })
     }
