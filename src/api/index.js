@@ -78,3 +78,36 @@ export function getCartSum(){
         method:'get',
     })
 }
+
+//cart
+export function checkCart(url){
+    return request({
+        url:url,
+        method:'put',
+    })
+}
+
+export function _getCartList(){
+    return request({
+        url:'/carts',
+        method:'get',
+    })
+}
+
+export function _delProduct(item){
+    return request({
+        url:`/carts/${item.productId}`,
+        method:'delete',
+    })
+}
+
+export function _updateCart(item,quantity, selected){
+    return request({
+        url:`/carts/${item.productId}`,
+        method:'put',
+        data:{
+            quantity,
+            selected
+        }
+    })
+}
