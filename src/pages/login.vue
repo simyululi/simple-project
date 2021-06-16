@@ -19,8 +19,8 @@
             <a href="javascript:;" class="btn" @click="_login">登录</a>
           </div>
           <div class="tips">
-<!--            <div class="sms" @click="register">手机短信登录/注册</div>-->
-            <!-- <div class="reg">立即注册<span>|</span>忘记密码？</div> -->
+            <div class="sms" @click="showModal = true">手机短信登录/注册</div>
+             <div class="reg">立即注册<span>|</span>忘记密码？</div>
           </div>
         </div>
       </div>
@@ -35,19 +35,53 @@
       </div>
       <p class="copyright">Copyright ©2020 mi.futurefe.com All Rights Reserved.</p>
     </div>
+    <modal
+        title="提示"
+        sureText="注册"
+        btnType="1"
+        modalType="middle"
+        v-bind:showModal="showModal"
+        v-on:submit="register"
+        v-on:cancel="showModal=false"
+    >
+
+      <template v-slot:body>
+        <div class="login-form">
+          <div class="input">
+            <input type="text" placeholder="请输入帐号" v-model="register_username">
+          </div>
+          <div class="input">
+            <input type="text" placeholder="请输入密码" v-model="register_password">
+          </div>
+          <div class="input">
+            <input type="text" placeholder="请输入email" v-model="register_email">
+          </div>
+        </div>
+      </template>
+
+
+    </modal>
   </div>
 </template>
 
 <script>
   import { mapActions } from 'vuex'
-  import { Login } from "@/api/index"
+  import { Login, _register } from "@/api/index"
+  import modal from "@/components/modal";
   export default {
     name: "login",
+    components:{
+      modal,
+    },
     data(){
       return {
         username:'',
         password:'',
-        userId:''
+        register_username:'',
+        register_password:'',
+        register_email:'',
+        userId:'',
+        showModal:false,
       }
     },
     methods:{
@@ -67,7 +101,14 @@
           });
         })
       },
-      ...mapActions(['saveUserName'])
+      ...mapActions(['saveUserName']),
+      register(){
+        const _this = this
+        _register(this.register_username, this.register_password, this.register_email).then(()=>{
+          _this.showModal=false
+          _this.$toast("注册成功")
+        })
+      },
     }
   }
 </script>

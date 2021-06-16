@@ -22,6 +22,7 @@ export function getProducts() {
     })
 }
 
+//login
 export function Login(username, password) {
     return request({
         url:"/user/login",
@@ -29,6 +30,18 @@ export function Login(username, password) {
         data:{
             username,
             password
+        }
+    })
+}
+
+export function _register(username, password, email){
+    return request({
+        url:'/user/register',
+        method:'post',
+        data:{
+            username,
+            password,
+            email
         }
     })
 }
@@ -54,9 +67,9 @@ export function getProductInfo(id) {
     })
 }
 
-export function selectCart(productId, selected) {
+export function _addCart(productId, selected) {
     return request({
-        url:"/cart",
+        url:"/carts",
         method:"post",
         data:{
             productId,
