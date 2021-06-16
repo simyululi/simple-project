@@ -78,7 +78,7 @@
                 <div class="item-info">
                   <h3>{{item.name}}</h3>
                   <p>{{item.subtitle}}</p>
-                  <p class="price" @click="addCart(item.name)">{{item.price}}元</p>
+                  <p class="price" @click="addCart(item.name, item.id)">{{item.price}}元</p>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@
 
 <script>
 import {Swiper, SwiperSlide} from "vue-awesome-swiper"
-import {getProducts, selectCart} from "@/api";
+import {getProducts, _addCart} from "@/api";
 import ServiceBar from "@/components/ServiceBar";
 import 'swiper/css/swiper.css'
 export default {
@@ -190,9 +190,9 @@ export default {
         this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)];
       })
     },
-    addCart(name) {
+    addCart(name, id) {
       const _this = this
-      selectCart(this.id, true).then((res) => {
+      _addCart(id, true).then((res) => {
         this.$store.dispatch('saveCartCount', res.cartTotalQuantity)
       }).then(()=>{
         _this.$toast(`${name}已经加入购物车`)
