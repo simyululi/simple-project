@@ -57,9 +57,14 @@
         //更改this指向，不改的话页面不跳转
         let _this = this
         Login(username, password).then((res) => {
-          this.$cookie.set('userId', res.id, {expires:'1M'})
+          this.$cookie.set('userId', res.id, {expires:'Session'})
           this.saveUserName(res.username)
-          _this.$router.push('/index');
+          _this.$router.push({
+            name:'index',
+            params:{
+              from:'login'
+            }
+          });
         })
       },
       ...mapActions(['saveUserName'])

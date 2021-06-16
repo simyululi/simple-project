@@ -92,7 +92,7 @@
 
 <script>
 import {Swiper, SwiperSlide} from "vue-awesome-swiper"
-import {getProducts} from "@/api";
+import {getProducts, selectCart} from "@/api";
 import ServiceBar from "@/components/ServiceBar";
 import 'swiper/css/swiper.css'
 export default {
@@ -191,7 +191,15 @@ export default {
       })
     },
     addCart(name) {
-      this.$toast(`${name}已经加入购物车`,)
+      const _this = this
+      selectCart(this.id, true).then((res) => {
+        this.$store.dispatch('saveCartCount', res.cartTotalQuantity)
+      }).then(()=>{
+        _this.$toast(`${name}已经加入购物车`)
+      }).catch(()=>{
+        _this.$toast(`${name}已经加入购物车`,)
+      })
+
     }
   },
 }

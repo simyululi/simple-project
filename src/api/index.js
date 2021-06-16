@@ -53,3 +53,28 @@ export function getProductInfo(id) {
         methods:"get",
     })
 }
+
+export function selectCart(productId, selected) {
+    return request({
+        url:"/cart",
+        method:"post",
+        data:{
+            productId,
+            selected
+        }
+    })
+}
+
+export function logout(){
+    return request({
+        url:'/user/logout',
+        method:'post',
+    })
+}
+
+export function getCartSum(){
+    return request({
+        url:'/carts/products/sum',
+        method:'get',
+    })
+}

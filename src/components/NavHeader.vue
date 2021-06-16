@@ -11,7 +11,7 @@
         <div class="topbar-user">
           <a href="javascript:;" v-if="username">{{username}}</a>
           <a href="javascript:;" v-if="!username" @click="login">登录</a>
-          <a href="javascript:;" v-if="username" >退出</a>
+          <a href="javascript:;" v-if="username" @click="_logout">退出</a>
           <a href="/#/order/list" v-if="username">我的订单</a>
           <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车({{cartCount}})</a>
         </div>
@@ -120,7 +120,7 @@
 
 <script>
   import { mapState } from 'vuex'
-  import {getPhoneList} from "@/api";
+  import { getPhoneList, logout, getCartSum } from "@/api";
 
   export default {
     name: "NavHeader",
@@ -140,17 +140,34 @@
     },
     mounted() {
       this.PhoneList()
-
+      let params = this.$route.params;
+      if(params && params.from == 'login'){
+        this.PhoneList();
+      }
     },
     methods:{
       login(){
         this.$router.push('/login');
+      },
+      _logout(){
+        const _this = this
+        logout().then(()=>{
+          _this.$toast('退出成功')
+          this.$cookie.set('userId','',{expires:'-1'});
+          this.$store.dispatch('saveUserName','');
+          this.$store.dispatch('saveCartCount','0');
+        })
       },
       PhoneList(){
         getPhoneList().then((res) => {
           if(res.list.length >= 6){
             this.phoneList = res.list.slice(0, 6)
           }
+        })
+      },
+      getCartCount(){
+        getCartSum().then((res = 0)=>{
+          this.$store.dispatch('saveCartCount',res);
         })
       },
       goToCart(){
