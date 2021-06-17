@@ -22,7 +22,7 @@
                 <span class="checkbox" v-bind:class="{'checked':item.productSelected}" @click="updateCart(item)"></span>
               </div>
               <div class="item-name">
-                <img v-lazy="item.productMainImage" alt="">
+                <img src="item.productMainImage" alt="">
                 <span>{{item.productName + ' , ' + item.productSubtitle}}</span>
               </div>
               <div class="item-price">{{item.productPrice}}</div>

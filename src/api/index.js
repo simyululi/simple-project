@@ -124,3 +124,31 @@ export function _updateCart(item,quantity, selected){
         }
     })
 }
+
+/**
+ * orderConfirm
+ */
+export function _getAddressList(){
+    return request({
+        url:'/shippings',
+        method:'get',
+    })
+}
+
+export function _submitAddress(url, method, params){
+    return request({
+        url:url,
+        method:method,
+        data:params
+    })
+}
+
+export function _orderSubmit(id){
+    return request({
+        url:'/orders',
+        method:'post',
+        data: {shippingId:id},
+    })
+}
+
+
