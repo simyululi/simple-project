@@ -36,7 +36,7 @@
       <p class="copyright">Copyright ©2020 mi.futurefe.com All Rights Reserved.</p>
     </div>
     <modal
-        title="提示"
+        title="注册账号"
         sureText="注册"
         btnType="1"
         modalType="middle"
@@ -44,7 +44,6 @@
         v-on:submit="register"
         v-on:cancel="showModal=false"
     >
-
       <template v-slot:body>
         <div class="login-form">
           <div class="input">
@@ -58,8 +57,6 @@
           </div>
         </div>
       </template>
-
-
     </modal>
   </div>
 </template>
@@ -67,11 +64,11 @@
 <script>
   import { mapActions } from 'vuex'
   import { Login, _register } from "@/api/index"
-  import modal from "@/components/modal";
+  // import modal from "@/components/modal";
   export default {
     name: "login",
     components:{
-      modal,
+      // modal,
     },
     data(){
       return {

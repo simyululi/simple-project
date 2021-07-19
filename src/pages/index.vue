@@ -389,6 +389,10 @@ export default {
                 }
               }
             }
+            .item:hover{
+              transition: all .5s;
+              box-shadow: 5px 5px 5px  5px #757575;
+            }
           }
         }
       }
