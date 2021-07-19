@@ -155,7 +155,7 @@
   </div>
 </template>
 <script>
-import modal from '@/components/modal'
+// import modal from '@/components/modal'
 import { _getCartList, _getAddressList, _submitAddress, _orderSubmit} from "@/api";
 
 export default{
@@ -174,7 +174,7 @@ export default{
     }
   },
   components:{
-    modal,
+    // modal,
   },
   mounted(){
     this.getAddressList();
